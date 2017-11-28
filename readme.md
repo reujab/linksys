@@ -45,5 +45,5 @@ This action returns a bit more information than `core/GetWANStatus`.
 #### `router/GetWANStatus3`
 This action returns a bit more information than `core/GetWANStatus2`.
 
-The following actions have no documentation:
+### Undocumented actions
 * `ui/GetRemoteSetting`
