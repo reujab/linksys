@@ -29,8 +29,7 @@ This action returns information about the router including the model, firmware, 
 
 #### `devicelist/GetDevices`
 This action returns every device that has connected to the router (whether it is currently connected or not) with information such as it's local IP address (if currently connected), hostname, MAC addresses, device model (if detected), and operating system (if detected). Surprisingly, this action does not require authorization.
-##### `sinceRevision`
-When this optional parameter is provided, the response will only contain devices that have connected since the specified revision.
+* `sinceRevision` an integer that, when provided, makes the response only contain devices that have connected since the specified revision.
 
 #### `firmwareupdate/GetFirmwareUpdateStatus`
 This action returns the timestamp of the last time the router checked for an update.
