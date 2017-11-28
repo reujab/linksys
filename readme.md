@@ -19,3 +19,31 @@ Most actions require authentication provided by the `X-JNAP-Authorization` HTTP 
 ```
 
 For example, if the password was `password`, the header would be `Basic YWRtaW46cGFzc3dvcmQ=`
+
+### Unauthorized requests
+#### `core/GetAdminPasswordHint`
+This action returns the password hint.
+
+#### `core/GetDeviceInfo`
+This action returns information about the router including the model, firmware, and a list of supported actions.
+
+#### `devicelist/GetDevices`
+This action returns every device that has connected to the router (whether it is currently connected or not) with information such as it's local IP address (if currently connected), hostname, MAC addresses, device model (if detected), and operating system (if detected). Surprisingly, this action does not require authentication.
+
+#### `networkconnections/GetNetworkConnections`
+This action returns information associated with every connected device including its MAC address, Mbps, band (2.4GHz, 5GHz, ...), and signal decibels. Surprisingly, this action does not require authentication.
+
+#### `networkconnections/GetNetworkConnections2`
+Same as `networkconnections/GetNetworkConnections`, but with the radio ID.
+
+#### `router/GetWANStatus`
+This action returns information about the WAN status of the router.
+
+#### `router/GetWANStatus2`
+This action returns a bit more information than `core/GetWANStatus`.
+
+#### `router/GetWANStatus3`
+This action returns a bit more information than `core/GetWANStatus2`.
+
+The following actions have no documentation:
+* `ui/GetRemoteSetting`
