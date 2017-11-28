@@ -45,5 +45,21 @@ This action returns a bit more information than `core/GetWANStatus`.
 #### `router/GetWANStatus3`
 This action returns a bit more information than `core/GetWANStatus2`.
 
+### Authorized requests
+#### `core/CheckAdminPassword`
+This action valides the password provided with the `X-JNAP-Authorization`.
+
+#### `guestnetwork/GetGuestRadioSettings`
+This action returns information about the guest network, such as if it's enabled, its SSID, and password.
+
+#### `wirelessap/GetRadioInfo`
+This action returns information about the main network, such as its SSID and password.
+
+#### `wirelessap/GetRadioInfo2`
+Same as `wirelessap/GetRadioInfo`, but with more information.
+
+#### `wirelessap/GetRadioInfo3`
+Same as `wirelessap/GetRadioInfo2`, but with more information.
+
 ### Undocumented actions
 * `ui/GetRemoteSetting`
