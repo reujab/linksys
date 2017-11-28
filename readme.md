@@ -24,6 +24,9 @@ For example, if the password was `password`, the header would be `Basic YWRtaW46
 #### `core/GetAdminPasswordHint`
 This action returns the password hint.
 
+#### `core/GetAdminPasswordRestrictions`
+This action returns the restrictions for the admin password.
+
 #### `core/GetDeviceInfo`
 This action returns information about the router including the model, firmware, and a list of supported actions.
 
@@ -34,9 +37,15 @@ This action returns whether the admin password is the default password.
 This action returns every device that has connected to the router (whether it is currently connected or not) with information such as it's local IP address (if currently connected), hostname, MAC addresses, device model (if detected), and operating system (if detected). Surprisingly, this action does not require authorization.
 * `sinceRevision` an integer that, when provided, makes the response only contain devices that have connected since the specified revision.
 
+#### `devicelist/GetLocalDevice`
+This action returns the router-assigned GUID of the device performing the request.
+
 #### `firmwareupdate/GetFirmwareUpdateStatus`
 This action returns the timestamp of the last time the router checked for an update.
 <!-- TODO: check response when update is available -->
+
+#### `locale/GetTimeSettings`
+This action returns the time zone of the router.
 
 #### `networkconnections/GetNetworkConnections`
 This action returns information associated with every connected device including its MAC address, Mbps, band (2.4GHz, 5GHz, ...), and signal decibels. Surprisingly, this action does not require authorization.
@@ -56,8 +65,17 @@ This actions returns WLAN QoS settings.
 #### `router/GetDHCPClientLeases`
 This action returns DHCP leases for every connected device.
 
+#### `router/GetIPv6Settings`
+This action returns IPv6 settings.
+
+#### `router/GetIPv6Settings2`
+Same as `router/GetIPv6Settings`, but with more information.
+
 #### `router/GetLANSettings`
 This actions returns LAN settings.
+
+#### `router/GetMACAddressCloneSettings`
+This action returns the MAC address clone settings.
 
 #### `router/GetWANStatus`
 This action returns information about the WAN status of the router.
@@ -68,12 +86,27 @@ This action returns a bit more information than `core/GetWANStatus`.
 #### `router/GetWANStatus3`
 This action returns a bit more information than `core/GetWANStatus2`.
 
+#### `routerleds/GetRouterLEDSettings`
+This action returns a list of activated LEDs on the router.
+
+#### `storage/GetPartitions`
+This action returns a list of external storage devices.
+
 #### `wirelessscheduler/GetWirelessSchedulerSettings`
 This actions returns the hours that wireless access is permitted by parental controls.
 
 ### Authorized requests
 #### `core/CheckAdminPassword`
 This action valides the password provided with the `X-JNAP-Authorization`.
+
+#### `devicelist/SetDeviceProperties`
+This action sets properties for a specified device.
+* `deviceID` the device GUID assigned by the router
+* `propertiesToModify` an array of objects of properties to modify
+	* `name` the property to modify. known values are: `urn:cisco-com:ui:qos` (QoS)
+	* `value` the value to set the property
+		* QoS
+			* `userPrioritized` prioritizes the device over other devices
 
 #### `firmwareupdate/UpdateFirmwareNow`
 This action instructs the router to perform a firmware upgrade.
