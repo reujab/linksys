@@ -27,6 +27,9 @@ This action returns the password hint.
 #### `core/GetDeviceInfo`
 This action returns information about the router including the model, firmware, and a list of supported actions.
 
+#### `core/IsAdminPasswordDefault`
+This action returns whether the admin password is the default password.
+
 #### `devicelist/GetDevices`
 This action returns every device that has connected to the router (whether it is currently connected or not) with information such as it's local IP address (if currently connected), hostname, MAC addresses, device model (if detected), and operating system (if detected). Surprisingly, this action does not require authorization.
 * `sinceRevision` an integer that, when provided, makes the response only contain devices that have connected since the specified revision.
@@ -50,6 +53,12 @@ This actions returns QoS settings.
 #### `qos/GetWLANQoSSettings`
 This actions returns WLAN QoS settings.
 
+#### `router/GetDHCPClientLeases`
+This action returns DHCP leases for every connected device.
+
+#### `router/GetLANSettings`
+This actions returns LAN settings.
+
 #### `router/GetWANStatus`
 This action returns information about the WAN status of the router.
 
@@ -72,6 +81,34 @@ This action instructs the router to perform a firmware upgrade.
 
 #### `guestnetwork/GetGuestRadioSettings`
 This action returns information about the guest network, such as if it's enabled, its SSID, and password.
+
+#### `guestnetwork/SetGuestRadioSettings`
+This action sets the settings for the guest network.
+* `isGuestNetworkEnabled` a boolean that is set to true when the guest network will be enabled.
+* `maxSimultaneousGuests` an integer that is set to the maximum number of devices that are allowed to be connected to the guest network.
+* `radios` an array containing information about the network
+	* `broadcastGuestSSID` a string containing the SSID for the guest network
+	* `guestPassword` a string containing the guest password
+	* `guestSSID` a string containing the guest SSID
+	* `isEnabled` a boolean that is set to true when the guest network is enabled. only takes effect when `isGuestNetworkEnabled` is set to true
+	* `radioID` a string containing the radio ID. can be obtained with `guestnetwork/GetGuestRadioSettings`
+
+#### `parentalcontrol/SetParentalControlSettings`
+This action sets the parental controls settings.
+* `isParentalControlEnabled` a boolean that is set to true when parental controls are enabled
+* `rules` an array of objects of rules
+	* `blockedURLs` an array of blocked URLs
+	* `description` a string with no meaning
+	* `isEnabled` a boolean
+	* `macAddresses` an array of affected MAC addresses
+	* `wanSchedule` an object of days and restricted hours
+		* `sunday` a 48-length string of restricted hours. every character in the string is either a 0 or a 1. 0 means restricted and 1 means allowed. the numbers are in 30-minute intervals. for example, a value of "0101..." would restrict access from 12am-12:30am and 1am-1:30am
+		* `monday` same as sunday
+		* `tuesday` same as sunday
+		* `wednesday` same as sunday
+		* `thursday` same as sunday
+		* `friday` same as sunday
+		* `saturday` same as sunday
 
 #### `wirelessap/GetRadioInfo`
 This action returns information about the main network, such as its SSID and password.
