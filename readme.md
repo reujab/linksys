@@ -29,12 +29,27 @@ This action returns information about the router including the model, firmware, 
 
 #### `devicelist/GetDevices`
 This action returns every device that has connected to the router (whether it is currently connected or not) with information such as it's local IP address (if currently connected), hostname, MAC addresses, device model (if detected), and operating system (if detected). Surprisingly, this action does not require authorization.
+##### `sinceRevision`
+When this optional parameter is provided, the response will only contain devices that have connected since the specified revision.
+
+#### `firmwareupdate/GetFirmwareUpdateStatus`
+This action returns the timestamp of the last time the router checked for an update.
+<!-- TODO: check response when update is available -->
 
 #### `networkconnections/GetNetworkConnections`
 This action returns information associated with every connected device including its MAC address, Mbps, band (2.4GHz, 5GHz, ...), and signal decibels. Surprisingly, this action does not require authorization.
 
 #### `networkconnections/GetNetworkConnections2`
 Same as `networkconnections/GetNetworkConnections`, but with the radio ID.
+
+#### `parentalcontrol/GetParentalControlSettings`
+This action returns the parentral controls settings, such as if it's enabled and rules.
+
+#### `qos/GetQoSSettings`
+This actions returns QoS settings.
+
+#### `qos/GetWLANQoSSettings`
+This actions returns WLAN QoS settings.
 
 #### `router/GetWANStatus`
 This action returns information about the WAN status of the router.
@@ -45,9 +60,16 @@ This action returns a bit more information than `core/GetWANStatus`.
 #### `router/GetWANStatus3`
 This action returns a bit more information than `core/GetWANStatus2`.
 
+#### `wirelessscheduler/GetWirelessSchedulerSettings`
+This actions returns the hours that wireless access is permitted by parental controls.
+
 ### Authorized requests
 #### `core/CheckAdminPassword`
 This action valides the password provided with the `X-JNAP-Authorization`.
+
+#### `firmwareupdate/UpdateFirmwareNow`
+This action instructs the router to perform a firmware upgrade.
+<!-- TODO: check response when update is available -->
 
 #### `guestnetwork/GetGuestRadioSettings`
 This action returns information about the guest network, such as if it's enabled, its SSID, and password.
