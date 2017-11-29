@@ -40,6 +40,9 @@ This action returns every device that has connected to the router (whether it is
 #### `devicelist/GetLocalDevice`
 This action returns the router-assigned GUID of the device performing the request.
 
+#### `firewall/GetALGSettings`
+This action returns the firewall ALG settings.
+
 #### `firmwareupdate/GetFirmwareUpdateStatus`
 This action returns the timestamp of the last time the router checked for an update.
 <!-- TODO: check response when update is available -->
@@ -65,6 +68,12 @@ This actions returns WLAN QoS settings.
 #### `router/GetDHCPClientLeases`
 This action returns DHCP leases for every connected device.
 
+#### `router/GetEthernetPortConnections`
+This action returns ethernet port connections.
+
+#### `router/GetExpressForwardingSettings`
+This action returns whether express forwarding is enabled.
+
 #### `router/GetIPv6Settings`
 This action returns IPv6 settings.
 
@@ -76,6 +85,9 @@ This actions returns LAN settings.
 
 #### `router/GetMACAddressCloneSettings`
 This action returns the MAC address clone settings.
+
+#### `router/GetRoutingSettings`
+This action returns routing settings.
 
 #### `router/GetWANStatus`
 This action returns information about the WAN status of the router.
@@ -89,6 +101,41 @@ This action returns a bit more information than `core/GetWANStatus2`.
 #### `routerleds/GetRouterLEDSettings`
 This action returns a list of activated LEDs on the router.
 
+#### `routerlog/GetDHCPLogEntries`
+This action returns DHCP log entries.
+* `firstEntryIndex` an integer
+* `entryCount` an integer
+
+#### `routerlog/GetIncomingLogEntries`
+This action returns incoming log entries.
+* `firstEntryIndex` an integer
+* `entryCount` an integer
+
+#### `routerlog/GetLogSettings`
+This action returns log settings.
+
+#### `routerlog/GetOutgoingLogEntries`
+This action returns outgoing log entries.
+* `firstEntryIndex` an integer
+* `entryCount` an integer
+
+#### `routerlog/GetSecurityLogEntries`
+This action returns security log entries.
+* `firstEntryIndex` an integer
+* `entryCount` an integer
+
+#### `routermanagement/GetManagementSettings`
+This action returns management settings of the router.
+
+#### `routermanagement/GetManagementSettings2`
+Same as `routermanagement/GetManagementSettings`, but with more information.
+
+#### `routermanagement/GetRemoteManagementStatus`
+This action returns the remote management status of the router.
+
+#### `routerupnp/GetUPnPSettings`
+This action returns UPnP settings.
+
 #### `storage/GetPartitions`
 This action returns a list of external storage devices.
 
@@ -99,6 +146,14 @@ This actions returns the hours that wireless access is permitted by parental con
 #### `core/CheckAdminPassword`
 This action valides the password provided with the `X-JNAP-Authorization`.
 
+#### `core/Reboot`
+This action instructs the router to reboot.
+
+#### `core/SetAdminPassword2`
+This action sets the _router_ admin password, NOT the network password.
+* `adminPassword` a string set to the password
+* `passwordHint` a hint viewable by anyone connected to the network
+
 #### `devicelist/SetDeviceProperties`
 This action sets properties for a specified device.
 * `deviceID` the device GUID assigned by the router
@@ -107,6 +162,13 @@ This action sets properties for a specified device.
 	* `value` the value to set the property
 		* QoS
 			* `userPrioritized` prioritizes the device over other devices
+
+#### `firmwareupdate/SetFirmwareUpdateSettings`
+This action sets the interval at which to check for updates and whether to automatically check for updates.
+* `autoUpdateWindow` an object containing information on when to check for updates
+	* `durationMinutes` interval at which to check for updates in minutes
+	* `startMinute`
+* `updatePolicy` a string set to `Manual` or `AutomaticallyCheckAndInstall`
 
 #### `firmwareupdate/UpdateFirmwareNow`
 This action instructs the router to perform a firmware upgrade.
@@ -126,6 +188,11 @@ This action sets the settings for the guest network.
 	* `isEnabled` a boolean that is set to true when the guest network is enabled. only takes effect when `isGuestNetworkEnabled` is set to true
 	* `radioID` a string containing the radio ID. can be obtained with `guestnetwork/GetGuestRadioSettings`
 
+#### `locale/SetTimeSettings`
+This action sets the time zone for the router.
+* `autoAdjustForDST` a boolean set to true when configured to automatically adject for daylight savings time
+* `timeZoneID` the id for the time zone
+
 #### `parentalcontrol/SetParentalControlSettings`
 This action sets the parental controls settings.
 * `isParentalControlEnabled` a boolean that is set to true when parental controls are enabled
@@ -143,6 +210,20 @@ This action sets the parental controls settings.
 		* `friday` same as sunday
 		* `saturday` same as sunday
 
+#### `routerleds/SetRouterLEDSettings`
+This actions enables or disables LEDs on the router.
+* `isSwitchportLEDEnabled` a boolean
+
+#### `routerlog/SetLogSettings`
+This action enables or disables logging.
+* `isLoggingEnabled` a boolean
+
+#### `vlantagging/GetProfiles`
+This action returns VLAN tagging profiles.
+
+#### `vlantagging/GetVLANTaggingSettings`
+This action returns VLAN tagging settings.
+
 #### `wirelessap/GetRadioInfo`
 This action returns information about the main network, such as its SSID and password.
 
@@ -151,6 +232,23 @@ Same as `wirelessap/GetRadioInfo`, but with more information.
 
 #### `wirelessap/GetRadioInfo3`
 Same as `wirelessap/GetRadioInfo2`, but with more information.
+
+#### `wirelessap/SetRadioSettings3`
+This action sets the SSID and password for the main main networks.
+* `bandSteeringMode` a string set to the band steering mode
+* `isBandSteeringEnabled` a boolean set to true when band steering is enabled
+* `radios` an array of objects describing settings for different frequencies
+	* `radioID` the ID of the frequency
+	* `settings` an object containing the settings of the frequency
+		* `broadcastSSID` a boolean set to false when the network is hidden
+		* `channel`
+		* `channelWidth`
+		* `isEnabled`
+		* `mode`
+		* `security` a string set to the security protocol
+		* `ssid`
+		* `wpaPersonalSettings` an object containing the password
+			* `passphrase` a string set to the password of the network
 
 ### Undocumented actions
 * `ui/GetRemoteSetting`
