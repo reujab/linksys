@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-type response struct {
+type jnapResponse struct {
 	Result string `json:"result"`
 	Error  string `json:"error"`
 	Output interface{}
@@ -56,7 +56,7 @@ func (client Client) MakeRequest(action string, body, output interface{}) error 
 		return ErrStatusCode
 	}
 
-	response := response{
+	response := jnapResponse{
 		Output: output,
 	}
 	err = json.NewDecoder(res.Body).Decode(&response)
