@@ -6,8 +6,7 @@ All API requests are POST requests made to `http://192.168.1.1/JNAP/`. The API e
 
 All requests contain a JSON object as the POST data. Even if the action doesn't require any parameters, the POST data must be `{}`. All actions below take no parameters unless otherwise documented. The `Content-Type` header does not matter and is assumed to be `application/json`.
 
-All responses are JSON objects with two keys: `output` and `response`.
-TODO: document keys
+All responses are JSON objects with two keys: `output` and `response`. The `response` key indicates the status of the action. A value of `OK` indicates the operation was successful, any other value indicates an error. When an error occurs, another field, `error`, may be returned.
 
 #### `X-JNAP-Action`
 Every request has a HTTP header, `X-JNAP-Action`, that describes the action, request, and response parameters. Every action starts with `http://linksys.com/jnap/` (alternatively, `http://cisco.com/jnap/` could be used, but it seems to be deprecated). The actions described below have the prefix omitted, but are required in the header. For example, if the heading below is `core/GetDeviceInfo`, the HTTP header `X-JNAP-Action` in the request will be `http://linksys.com/jnap/core/GetDeviceInfo`.
