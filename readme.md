@@ -9,10 +9,10 @@ All requests contain a JSON object as the POST data. Even if the action doesn't 
 All responses are JSON objects with two keys: `output` and `response`. The `response` key indicates the status of the action. A value of `OK` indicates the operation was successful, any other value indicates an error. When an error occurs, another field, `error`, may be returned.
 
 #### `X-JNAP-Action`
-Every request has a HTTP header, `X-JNAP-Action`, that describes the action, request, and response parameters. Every action starts with `http://linksys.com/jnap/` (alternatively, `http://cisco.com/jnap/` could be used, but it seems to be deprecated). The actions described below have the prefix omitted, but are required in the header. For example, if the heading below is `core/GetDeviceInfo`, the HTTP header `X-JNAP-Action` in the request will be `http://linksys.com/jnap/core/GetDeviceInfo`.
+Every request has an HTTP header, `X-JNAP-Action`, that describes the action, request, and response parameters. Every action starts with `http://linksys.com/jnap/` (alternatively, `http://cisco.com/jnap/` could be used, but it seems to be deprecated). The actions described below have the prefix omitted, but are required in the header. For example, if the heading below is `core/GetDeviceInfo`, the HTTP header `X-JNAP-Action` in the request will be `http://linksys.com/jnap/core/GetDeviceInfo`.
 
 #### `X-JNAP-Authorization`
-Most actions require authorization provided by the `X-JNAP-Authorization` HTTP header. The header is a [basic access authentication](https://en.wikipedia.org/wiki/Basic_access_authentication) with the username `admin`. An example for the value of `X-JNAP-Authorization` in pseudocode would be:
+Most actions require authorization provided by the `X-JNAP-Authorization` HTTP header. The header is a [basic access authentication](https://en.wikipedia.org/wiki/Basic_access_authentication) with the username `admin`. An example of the value of `X-JNAP-Authorization` in pseudocode would be:
 ```
 "Basic "+base64("admin:"+password)
 ```
@@ -56,13 +56,13 @@ This action returns information associated with every connected device including
 Same as `networkconnections/GetNetworkConnections`, but with the radio ID.
 
 #### `parentalcontrol/GetParentalControlSettings`
-This action returns the parentral controls settings, such as if it's enabled and rules.
+This action returns the parental controls settings, such as if it's enabled and rules.
 
 #### `qos/GetQoSSettings`
-This actions returns QoS settings.
+This action returns QoS settings.
 
 #### `qos/GetWLANQoSSettings`
-This actions returns WLAN QoS settings.
+This action returns WLAN QoS settings.
 
 #### `router/GetDHCPClientLeases`
 This action returns DHCP leases for every connected device.
@@ -80,7 +80,7 @@ This action returns IPv6 settings.
 Same as `router/GetIPv6Settings`, but with more information.
 
 #### `router/GetLANSettings`
-This actions returns LAN settings.
+This action returns LAN settings.
 
 #### `router/GetMACAddressCloneSettings`
 This action returns the MAC address clone settings.
@@ -139,11 +139,11 @@ This action returns UPnP settings.
 This action returns a list of external storage devices.
 
 #### `wirelessscheduler/GetWirelessSchedulerSettings`
-This actions returns the hours that wireless access is permitted by parental controls.
+This action returns the hours that wireless access is permitted by parental controls.
 
 ### Authorized requests
 #### `core/CheckAdminPassword`
-This action valides the password provided with the `X-JNAP-Authorization`.
+This action validates the password provided with the `X-JNAP-Authorization`.
 
 #### `core/Reboot`
 This action instructs the router to reboot.
@@ -189,7 +189,7 @@ This action sets the settings for the guest network.
 
 #### `locale/SetTimeSettings`
 This action sets the time zone for the router.
-* `autoAdjustForDST` a boolean set to true when configured to automatically adject for daylight savings time
+* `autoAdjustForDST` a boolean set to true when configured to automatically adjust for daylight savings time
 * `timeZoneID` the id for the time zone
 
 #### `parentalcontrol/SetParentalControlSettings`
@@ -210,7 +210,7 @@ This action sets the parental controls settings.
 		* `saturday` same as sunday
 
 #### `routerleds/SetRouterLEDSettings`
-This actions enables or disables LEDs on the router.
+This action enables or disables LEDs on the router.
 * `isSwitchportLEDEnabled` a boolean
 
 #### `routerlog/SetLogSettings`
@@ -233,7 +233,7 @@ Same as `wirelessap/GetRadioInfo`, but with more information.
 Same as `wirelessap/GetRadioInfo2`, but with more information.
 
 #### `wirelessap/SetRadioSettings3`
-This action sets the SSID and password for the main main networks.
+This action sets the SSID and password for the main networks.
 * `bandSteeringMode` a string set to the band steering mode
 * `isBandSteeringEnabled` a boolean set to true when band steering is enabled
 * `radios` an array of objects describing settings for different frequencies
