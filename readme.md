@@ -248,6 +248,3 @@ This action sets the SSID and password for the main main networks.
 		* `ssid`
 		* `wpaPersonalSettings` an object containing the password
 			* `passphrase` a string set to the password of the network
-
-### Undocumented actions
-* `ui/GetRemoteSetting`
