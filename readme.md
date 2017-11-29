@@ -92,10 +92,10 @@ This action returns routing settings.
 This action returns information about the WAN status of the router.
 
 #### `router/GetWANStatus2`
-This action returns a bit more information than `core/GetWANStatus`.
+This action returns a bit more information than `router/GetWANStatus`.
 
 #### `router/GetWANStatus3`
-This action returns a bit more information than `core/GetWANStatus2`.
+This action returns a bit more information than `router/GetWANStatus2`.
 
 #### `routerleds/GetRouterLEDSettings`
 This action returns a list of activated LEDs on the router.
