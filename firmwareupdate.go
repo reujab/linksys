@@ -22,5 +22,5 @@ func (client Client) GetLastUpgradeCheck() (time.Time, error) {
 
 // UpgradeFirmware checks for an update and updates if available. Requires authorization.
 func (client Client) UpgradeFirmware() error {
-	return client.MakeRequest("firmwareupdate/UpdateFirmwareNow")
+	return client.MakeRequest("firmwareupdate/UpdateFirmwareNow", nil, nil)
 }
