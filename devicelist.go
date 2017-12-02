@@ -2,8 +2,9 @@ package linksys
 
 // Devices represents a list of devices that have connected to the router.
 type Devices struct {
-	Devices  []Device `json:"devices"`
-	Revision int      `json:"revision"`
+	DeletedDevices []string `json:"deletedDeviceIDs"`
+	Devices        []Device `json:"devices"`
+	Revision       int      `json:"revision"`
 }
 
 // Device represents a device that has connected to the router.
