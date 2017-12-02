@@ -36,7 +36,9 @@ type Device struct {
 // GetDevices returns every device that has connected to the router (whether it is currently connected or not). `revision` can be set to 0 to get all devices.
 func (client Client) GetDevices(revision int) (Devices, error) {
 	var devices Devices
-	err := client.MakeRequest("devicelist/GetDevices", nil, &devices)
+	err := client.MakeRequest("devicelist/GetDevices", map[string]int{
+		"sinceRevision": revision,
+	}, &devices)
 	return devices, err
 }
 
