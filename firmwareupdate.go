@@ -11,6 +11,10 @@ func (client Client) GetLastUpgradeCheck() (time.Time, error) {
 			Date        string `json:"firmwareDate"`
 			Description string `json:"description"`
 		} `json:"availableUpdate"`
+		PendingOperation *struct {
+			Operation string `json:"operation"`
+			Progress  int    `json:"progressPercent"`
+		}
 	}
 	err := client.MakeRequest("firmwareupdate/GetFirmwareUpdateStatus", nil, &check)
 	if err != nil {
