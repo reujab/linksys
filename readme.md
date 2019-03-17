@@ -1,4 +1,4 @@
-# linksys
+# linksys [![godoc](https://godoc.org/github.com/reujab/linksys?status.svg)](https://godoc.org/github.com/reujab/linksys)
 A Go library for interacting with Linksys Smart WiFi-enabled routers using the JNAP protocol described below.
 
 ## HTTP API overview
